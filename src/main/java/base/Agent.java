@@ -16,8 +16,9 @@ public interface Agent {
 	 * It also declares queue
 	 * 
 	 * @return true if connection was setup else false
+	 * @throws IOException 
 	 */
-	public boolean setupConnection();
+	public void setupConnection() throws IOException;
 	
 	/**
 	 * Close channel and connection. 
