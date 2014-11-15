@@ -1,18 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-<<<<<<< HEAD
   <groupId>com.learn.amqp</groupId>
   <artifactId>rabbitmqtest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>rabbitmqtest</name>
   <description>Test rabbitMQ with various use cases</description>
-=======
-  <groupId>com.javawithprince</groupId>
-  <artifactId>rabbitMQTest</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>rabbitMQTest</name>
-  <description>Testing rabbitMQ</description>
->>>>>>> 96815ec0f8b6797a9ca0745bef686e3d1cd467e6
   <dependencies>
   	<dependency>
   		<groupId>com.rabbitmq</groupId>
@@ -36,11 +28,7 @@
       <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
-<<<<<<< HEAD
           <version>4.11</version>
-=======
-          <version>3.8.2</version>
->>>>>>> 96815ec0f8b6797a9ca0745bef686e3d1cd467e6
           <scope>test</scope>
       </dependency>
       <dependency>
@@ -63,9 +51,7 @@
   		</dependency>
   	</dependencies>
   </dependencyManagement>
-<<<<<<< HEAD
-  
-  <build>
+ <build>
     <pluginManagement>
         <plugins>
             <plugin>
@@ -97,6 +83,4 @@
         </plugins>
     </pluginManagement>
 </build>
-=======
->>>>>>> 96815ec0f8b6797a9ca0745bef686e3d1cd467e6
 </project>
