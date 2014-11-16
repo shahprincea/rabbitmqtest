@@ -8,9 +8,9 @@ import org.apache.commons.lang3.SerializationUtils;
 
 import com.rabbitmq.client.MessageProperties;
 
-public class Producer extends AbstractAgent implements Sender {
+public class QueueProducer extends AbstractAgent implements Sender {
 
-	public Producer(String producerName) throws IOException {
+	public QueueProducer(String producerName) throws IOException {
 		super(producerName);
 		s_logger.log(Level.INFO, "Producer {0} Alive", producerName);
 		super.setupConnection();
