@@ -42,11 +42,6 @@ public class SimpleConsumer {
 
 	}
 	
-	public static void main(String[] args) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
-		SimpleConsumer consumer = new SimpleConsumer("Default_Consume");
-		consumer.consume(Long.MAX_VALUE);
-	}
-	
 	/**
 	 * Set up connection with Rabbit and also declares queue
 	 * 
@@ -73,7 +68,7 @@ public class SimpleConsumer {
 	 * @throws ConsumerCancelledException
 	 * @throws InterruptedException
 	 */
-	public void consume(final long numOfMsg) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException  {
+	public void consume(final long numOfMsg, boolean sendAck) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException  {
 		
 		connection();
 		
@@ -85,11 +80,19 @@ public class SimpleConsumer {
   	      String message = new String(delivery.getBody());
   	      System.out.println(m_name +" [x] Received '" + message + "'");
   	      Thread.sleep(2000);
-  	      m_channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+  	      if(sendAck)
+  	    	  m_channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+  	      else 
+  	    	  m_channel.basicNack(delivery.getEnvelope().getDeliveryTag(), false, true);
   	    }
   	    
   	    m_channel.close();
   	    m_connection.close();
+	}
+	
+	public static void main(String[] args) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
+		SimpleConsumer consumer = new SimpleConsumer("Default_Consume");
+		consumer.consume(Long.MAX_VALUE, true);
 	}
 }
 
