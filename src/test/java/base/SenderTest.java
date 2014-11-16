@@ -6,21 +6,21 @@ import java.util.logging.Logger;
 
 
 /**
- * Producer test
+ * Sender test
  * 
  * @author Prince
  *
  */
-public class ProducerTest {
+public class SenderTest {
 
-	private static final Logger s_logger = Logger.getLogger(ProducerTest.class.getName());
+	private static final Logger s_logger = Logger.getLogger(SenderTest.class.getName());
 	
 	public void testBasicPublish() throws IOException {
-		QueueProducer producer = new QueueProducer("P1");
+		Producer sender = new Producer("Producer");
 		for(int i = 0; i < 10; i++) {
 			HashMap<String, Integer> message = new HashMap<String, Integer>();
 			message.put("msgNum", i);
-			producer.publishMsg(message);
+			sender.publishMsg(message);
 			s_logger.info("Message number " + i);
 		}
 	}

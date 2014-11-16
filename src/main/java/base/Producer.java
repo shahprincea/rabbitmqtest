@@ -8,9 +8,14 @@ import org.apache.commons.lang3.SerializationUtils;
 
 import com.rabbitmq.client.MessageProperties;
 
-public class QueueProducer extends AbstractAgent implements Sender {
+/**
+ * Producer which publish message to Queue/Exchange
+ * @author Prince
+ *
+ */
+public class Producer extends AbstractAgent {
 
-	public QueueProducer(String producerName) throws IOException {
+	public Producer(String producerName) throws IOException {
 		super(producerName);
 		s_logger.log(Level.INFO, "Producer {0} Alive", producerName);
 		super.setupConnection();
@@ -21,7 +26,6 @@ public class QueueProducer extends AbstractAgent implements Sender {
 	 * Publishes this message directly to Queue
 	 * It does not use any exchange
 	 */
-	@Override
 	public void publishMsg(Serializable object) throws IOException {
 		channel.basicPublish("", App.getProperty("queuename"), MessageProperties.MINIMAL_PERSISTENT_BASIC, SerializationUtils.serialize(object));
 	}
@@ -29,7 +33,6 @@ public class QueueProducer extends AbstractAgent implements Sender {
 	/**
 	 * Publishes messages to Exchange using defined rountingKey
 	 */
-	@Override
 	public void publishMsg(Serializable object, String exchange, String routingKey) throws IOException {
 		channel.basicPublish(exchange, routingKey, MessageProperties.MINIMAL_PERSISTENT_BASIC, SerializationUtils.serialize(object));
 	}

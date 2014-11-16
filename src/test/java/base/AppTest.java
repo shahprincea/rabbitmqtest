@@ -19,7 +19,8 @@ public class AppTest {
 		assertTrue(!value.isEmpty() && value.length() > 0);
 	}
 
-	@Test
+	//Disable this test as it causes RabbitMQ to restart
+	//@Test
 	public void testStartStopRabbitMQ() throws InterruptedException, IOException {
 		if(App.isRabbitAlive()) {
 			App.stopRabbit();

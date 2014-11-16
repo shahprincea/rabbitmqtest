@@ -3,20 +3,25 @@ package base;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.SerializationUtils;
 
 import com.rabbitmq.client.AMQP.BasicProperties;
-import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.Envelope;
 import com.rabbitmq.client.ShutdownSignalException;
 
-public class QueueConsumer extends AbstractAgent implements Runnable, Consumer {
+/**
+ * Consumer which 
+ * @author Prince
+ *
+ */
+public class Consumer extends AbstractAgent implements Callable<String>, com.rabbitmq.client.Consumer {
 
-	private static final Logger s_logger = Logger.getLogger(QueueConsumer.class.getName());
-	public QueueConsumer(String agentName) throws IOException {
+	private static final Logger s_logger = Logger.getLogger(Consumer.class.getName());
+	public Consumer(String agentName) throws IOException {
 		super(agentName);
 		super.setupConnection();
 	}
@@ -26,25 +31,31 @@ public class QueueConsumer extends AbstractAgent implements Runnable, Consumer {
 	 */
 	@Override
 	public void handleConsumeOk(String consumerTag) {
-		s_logger.info("Consumer " + agentName + " having consumerTag " + consumerTag +" registered");
+		System.out.println("Consumer " + agentName + " having consumerTag " + consumerTag +" registered");
 	}
 
 	@Override
 	public void handleCancelOk(String consumerTag) {
-		s_logger.info("Consumer " + agentName + " having consumerTag " + consumerTag +" de-registered");
+		System.out.println("Consumer " + agentName + " having consumerTag " + consumerTag +" de-registered");
 	}
 
 	@Override
 	public void handleCancel(String consumerTag) throws IOException {
-		s_logger.info("Consumer " + agentName + " having consumerTag " + consumerTag +" de-registered as queue is deleted");
+		System.out.println("Consumer " + agentName + " having consumerTag " + consumerTag +" de-registered as queue is deleted");
 		
 	}
 
 	@Override
 	public void handleDelivery(String consumerTag, Envelope env,
 			BasicProperties props, byte[] body) throws IOException {
-		Map<String, Integer> map = (HashMap<String, Integer>)SerializationUtils.deserialize(body);
-		s_logger.info(agentName + " consumed msg_" + map.get("msgNum"));
+		try {
+			Map<String, Integer> map = (HashMap<String, Integer>)SerializationUtils.deserialize(body);
+			System.out.println(agentName + " consumed msg_" + map.get("msgNum"));
+			//System.out.println(agentName + " sleeping for 2sec");
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -61,17 +72,13 @@ public class QueueConsumer extends AbstractAgent implements Runnable, Consumer {
 	}
 
 	@Override
-	public void run() {
+	public String call() throws Exception {
 		try {
 			channel.basicConsume(App.getProperty("queuename"), true, this);
-			s_logger.info(agentName + " sleeping for 2sec");
-			TimeUnit.SECONDS.sleep(2);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
+		} 
+		return null;
 	}
 
 }
