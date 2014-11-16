@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
+import org.junit.Test;
+
 
 /**
  * Sender test
@@ -15,6 +17,7 @@ public class SenderTest {
 
 	private static final Logger s_logger = Logger.getLogger(SenderTest.class.getName());
 	
+	@Test
 	public void testBasicPublish() throws IOException {
 		Producer sender = new Producer("Producer");
 		for(int i = 0; i < 10; i++) {

@@ -40,9 +40,6 @@ public class ConsumerTest {
 		}
 		
 		executor.awaitTermination(8, TimeUnit.SECONDS);
-	    
-		
-		
 	}
 
 }
