@@ -1,6 +1,10 @@
 package Cases;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import base.App;
@@ -74,6 +78,27 @@ public class SimpleProducer {
   	    	String message = "msg_"+i;
 	  		m_channel.basicPublish("", m_queue, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
 	  	    System.out.println(m_name + " [x] Sent '" + message + "'");
+	  	}
+  	    m_channel.close();
+        m_connection.close();
+  	    
+	}
+
+	/**
+	 * Produces msg of size 2k and publishes directly to the queue
+	 * 
+	 * @param numOfMsg
+	 * @throws IOException
+	 */
+	public void produceSmallMsg(long numOfMsg, Path path) throws IOException {
+		
+		connection();
+		m_channel.queueDeclare(m_queue, m_durable, m_exclusive, m_autoDelete, m_arguments);
+		byte[] msg = Files.readAllBytes(path);
+		
+  		for(int i = 1; i <= numOfMsg; i++) {
+  	    	m_channel.basicPublish("", m_queue, MessageProperties.PERSISTENT_TEXT_PLAIN, msg);
+	  	    System.out.println(m_name + " [x] Sent msg_"+i);
 	  	}
   	    m_channel.close();
         m_connection.close();

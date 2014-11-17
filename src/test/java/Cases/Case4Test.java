@@ -31,7 +31,7 @@ public class Case4Test {
 			public void run() {
 				try {
 					SimpleProducer producer = new SimpleProducer("Producer");
-					producer.produce(2000);
+					producer.produce(10);
 					
 					System.out.println("Shutting down RabbitMQ");
 					App.restartRabbit(1);

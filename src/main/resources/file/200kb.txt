@@ -1,0 +1,531 @@
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+
+
+Message size limit 
+2k ,20k 200k, 2000k etc 
+
+Disk full should block producer but not crash
+
+ from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+Does durable queue never losses messages from publishers
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
+
+Reliable Publishing message to the queue. (What happens when publisher transmit message and broker dies before receiving message)
+understand tradeoff interms of performance. (Single Node is fine)
+
+Batch operation should be supported 
+1 ,10 ,100, 1000, 100000 (2KB msg) 
+
+
+
+
+2. Scaling out (Adding or Removing consumer dynamically without bringing down the queue) 
+Which machine do consumer connect and where does publisher publish message on multinode ? 
+
+3. Messages are delivered reliably ? What happens when node holding queues dies and never recovers ?  
+What happens when consumer dequeue and sit on it ? () ? What happens when consumer disconnect ? 
+
+4. Batch operation should be supported 
+
+5. Message size limit
+6. OS required to run queue
+7. Disk full should block producer but not crash 
+8. Ordering does not matter (can that help bring performance ?)
+9. What happens if consumers takes forever to complete given task ? 
+10. Where are messages persisted ? 
+11. Expired msg if you can ?
+12. Size of the queue (bounded or unbounded)
+13. Performance number ?
+14. Cross language ?
