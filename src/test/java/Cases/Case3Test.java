@@ -11,63 +11,64 @@ import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.ShutdownSignalException;
 
 /**
- * Consumers can be added/removed dynamically 
+ * Queue should never take away work from consumer even if consumer takes forever to complete.
  * 
- * Here we produce 10 messages and consumer 1 and consumer 2 
- * starts at different point in time to consume all the messages
+ * Here Producer produces 1 messages and consumer_1 takes forever to complete. But consumer_2 will not steal its work 
+ * allowing consumer_1 to complete it 
  * 
  * @author Prince
  *
  */
-public class Case1Test {
+public class Case3Test {
 
 	@Test
 	public void multipleConsumer() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
+	
 		
 		ExecutorService executor = Executors.newFixedThreadPool(3);
+		//Produce 10 messages
 		executor.execute(new Runnable() {
 
 			@Override
 			public void run() {
 				try {
 					SimpleProducer producer = new SimpleProducer("Producer");
-					producer.produce(10);
+					producer.produce(1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}  
 			}
 			
 		});
-		
+		//Consume 1 msg and but waits for 1 minute before sending ack
 		executor.execute(new Runnable() {
 
 			@Override
 			public void run() {
 				SimpleConsumer consumer_1 = new SimpleConsumer("Consumer_1");
 				try {
-					consumer_1.consumeAtWill(true, 20);//Try to Consume 10 msg as quickly as possible
+					consumer_1.consumeAtWill(true, 15000, true); 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}  
 			}
 			
 		});
-		
+		//Consume as many messages as you can 
 		executor.execute(new Runnable() {
 
 			@Override
 			public void run() {
 				SimpleConsumer consumer_2 = new SimpleConsumer("Consumer_2");
 				try {
-					consumer_2.consumeAtWill(true);//Try to Consume 10 msg as quickly as possible
+					consumer_2.consumeAtWill(true); 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}  
 			}
 			
 		});
-		
 		executor.shutdown();
-		executor.awaitTermination(10, TimeUnit.SECONDS);
+		executor.awaitTermination(1, TimeUnit.MINUTES);
 	}
 }
