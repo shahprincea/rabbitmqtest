@@ -1,10 +1,9 @@
 package Cases;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 
 import base.App;
@@ -40,6 +39,17 @@ public class SimpleProducer {
 		m_exclusive = Boolean.parseBoolean(App.getProperty("isexclusive"));
 		m_autoDelete = Boolean.parseBoolean(App.getProperty("autodelete"));
 		m_arguments = null;
+		m_host = App.getProperty("host");
+		m_name = name;
+	}
+	
+	public SimpleProducer (String name, Map<String, Object> queueProps) {
+		//Declaring a queue from config.properties
+		m_queue = App.getProperty("queuename");
+		m_durable = Boolean.parseBoolean(App.getProperty("isdurable"));
+		m_exclusive = Boolean.parseBoolean(App.getProperty("isexclusive"));
+		m_autoDelete = Boolean.parseBoolean(App.getProperty("autodelete"));
+		m_arguments = queueProps;
 		m_host = App.getProperty("host");
 		m_name = name;
 	}
