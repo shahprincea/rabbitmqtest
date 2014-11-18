@@ -72,6 +72,9 @@ public class SimpleConsumer {
 	public void consume(final long numOfMsg, boolean sendAck, long waittime) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException  {
 		
 		ConnectionFactory factory = new ConnectionFactory();
+		factory.setAutomaticRecoveryEnabled(true);
+		// attempt recovery every 10 seconds
+		factory.setNetworkRecoveryInterval(10000);
 	    factory.setHost(m_host);
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
@@ -122,6 +125,9 @@ public class SimpleConsumer {
 	public void consumeAtWill(boolean sendAck, long waittime, boolean showDone) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException  {
 		
 		ConnectionFactory factory = new ConnectionFactory();
+		factory.setAutomaticRecoveryEnabled(true);
+		// attempt recovery every 10 seconds
+		factory.setNetworkRecoveryInterval(10000);
 	    factory.setHost(m_host);
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();

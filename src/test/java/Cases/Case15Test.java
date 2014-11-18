@@ -10,23 +10,20 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
+import base.App;
+
 import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.ShutdownSignalException;
 
 /**
- * Queue should block producers in case of Disk full (or reaching some threshold).
- * 
- * Here we have disk_free_limit to very amount (10.5GB) and we will quickly see alarm. 
- * At this point we should block producer. Once you consume msg producer will be 
- * allowed to publish more messages
  * 
  * @author Prince
  *
  */
-public class Case10Test {
+public class Case15Test {
 
 	@Test
-	public void multipleProducer() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
+	public void singleProducer() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
 		
 		ExecutorService executor = Executors.newFixedThreadPool(3);
 		executor.execute(new Runnable() {
@@ -37,9 +34,21 @@ public class Case10Test {
 					SimpleProducer producer = new SimpleProducer("Producer");
 					//Get file from resources folder
 					ClassLoader classLoader = getClass().getClassLoader();
-					File file = new File(classLoader.getResource("file/200kb.txt").getFile());
+					File file = new File(classLoader.getResource("file/2kb.txt").getFile());
 					Path path = Paths.get(file.toURI());
-					producer.produceMsgPerFile(10000000, path);
+					producer.produceMsgPerFile(10, path);
+					
+					App.restartRabbit(2);
+					
+					producer.produceMsgPerFile(10, path);
+					
+					SimpleConsumer consumer_1 = new SimpleConsumer("Consumer_1");
+					
+					consumer_1.consumeAtWill(true, 10);//Try to Consume 10 msg as quickly as possible
+					
+					App.restartRabbit(2);
+					
+					consumer_1.consumeAtWill(true, 10);//Try to Consume 10 msg as quickly as possible
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,9 +56,9 @@ public class Case10Test {
 			}
 			
 		});
-		
+				
 		executor.shutdown();
-		executor.awaitTermination(5, TimeUnit.MINUTES);
+		executor.awaitTermination(20, TimeUnit.SECONDS);
 		
 	}
 }

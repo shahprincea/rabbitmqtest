@@ -3,7 +3,6 @@ package Cases;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.Map;
 
 import base.App;
@@ -64,6 +63,9 @@ public class SimpleProducer {
 	 */
 	private void connection() throws IOException {
 		ConnectionFactory factory = new ConnectionFactory();
+		factory.setAutomaticRecoveryEnabled(true);
+		// attempt recovery every 10 seconds
+		factory.setNetworkRecoveryInterval(10000);
 	    factory.setHost(m_host);
 	    m_connection = factory.newConnection();
 	    m_channel = m_connection.createChannel();
