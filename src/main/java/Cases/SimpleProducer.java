@@ -100,7 +100,7 @@ public class SimpleProducer {
 	 * @param numOfMsg
 	 * @throws IOException
 	 */
-	public void produceSmallMsg(long numOfMsg, Path path) throws IOException {
+	public void produceMsgPerFile(long numOfMsg, Path path) throws IOException {
 		
 		connection();
 		m_channel.queueDeclare(m_queue, m_durable, m_exclusive, m_autoDelete, m_arguments);

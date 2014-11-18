@@ -13,7 +13,17 @@ import org.junit.Test;
 import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.ShutdownSignalException;
 
-public class Case7Test {
+/**
+ * Queue should block producers in case of Disk full (or reaching some threshold).
+ * 
+ * Here we have disk_free_limit to very amount (10.5GB) and we will quickly see alarm. 
+ * At this point we should block producer. Once you consume msg producer will be 
+ * allowed to publish more messages
+ * 
+ * @author Prince
+ *
+ */
+public class Case10Test {
 
 	@Test
 	public void multipleProducer() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
@@ -27,17 +37,9 @@ public class Case7Test {
 					SimpleProducer producer = new SimpleProducer("Producer");
 					//Get file from resources folder
 					ClassLoader classLoader = getClass().getClassLoader();
-					File file = new File(classLoader.getResource("file/2kb.txt").getFile());
+					File file = new File(classLoader.getResource("file/200kb.txt").getFile());
 					Path path = Paths.get(file.toURI());
-					producer.produceMsgPerFile(10, path);
-					
-					file = new File(classLoader.getResource("file/20kb.txt").getFile());
-					path = Paths.get(file.toURI());
-					producer.produceMsgPerFile(10, path);
-					
-					file = new File(classLoader.getResource("file/200kb.txt").getFile());
-					path = Paths.get(file.toURI());
-					producer.produceMsgPerFile(10, path);
+					producer.produceMsgPerFile(10000000, path);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +49,7 @@ public class Case7Test {
 		});
 		
 		executor.shutdown();
-		executor.awaitTermination(8, TimeUnit.SECONDS);
+		executor.awaitTermination(500, TimeUnit.SECONDS);
 		
 	}
 }
