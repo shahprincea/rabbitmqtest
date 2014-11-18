@@ -69,7 +69,9 @@ public class SimpleProducer {
 	    factory.setHost(m_host);
 	    m_connection = factory.newConnection();
 	    m_channel = m_connection.createChannel();
-	    
+	    if(m_arguments != null) {
+	    	m_channel.queueDelete(m_queue);
+	    }
 	    m_channel.queueDeclare(m_queue, m_durable, m_exclusive, m_autoDelete, m_arguments);
   		System.out.println(m_name + " [*] Waiting for messages. To exit press CTRL+C");
 	}
@@ -105,7 +107,6 @@ public class SimpleProducer {
 	public void produceMsgPerFile(long numOfMsg, Path path) throws IOException {
 		
 		connection();
-		m_channel.queueDeclare(m_queue, m_durable, m_exclusive, m_autoDelete, m_arguments);
 		byte[] msg = Files.readAllBytes(path);
 		
   		for(int i = 1; i <= numOfMsg; i++) {
