@@ -1,9 +1,6 @@
 package Cases;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -15,15 +12,10 @@ import base.App;
 import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.ShutdownSignalException;
 
-/**
- * 
- * @author Prince
- *
- */
-public class Case15Test {
-
+public class Case14Test {
+	
 	@Test
-	public void singleProducer() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
+	public void multipleConsumer() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException {
 		
 		ExecutorService executor = Executors.newFixedThreadPool(3);
 		executor.execute(new Runnable() {
@@ -32,8 +24,7 @@ public class Case15Test {
 			public void run() {
 				try {
 					SimpleProducer producer = new SimpleProducer("Producer");
-					producer.produceReliably(10000, 0);
-					
+					//producer.produceWithDelay(10,2000);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,13 +36,13 @@ public class Case15Test {
 
 			@Override
 			public void run() {
-				try {
+				/*try {
 					SimpleConsumer producer = new SimpleConsumer("Consumer");
-					producer.consumeAtWill(true, 50);
+					producer.consumeAtWill(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
-				}  
+				}  */
 			}
 			
 		});
@@ -61,8 +52,8 @@ public class Case15Test {
 			public void run() {
 				try {
 					for(int i =0; i < 3; i++) {
-						//App.restartRabbit(2);
-						TimeUnit.SECONDS.sleep(1);
+						App.restartRabbit(2000);
+						TimeUnit.SECONDS.sleep(5);
 					}
 					
 				} catch (Exception e) {
@@ -71,9 +62,9 @@ public class Case15Test {
 			}
 			
 		});
-				
+		
 		executor.shutdown();
-		executor.awaitTermination(10, TimeUnit.MINUTES);
+		executor.awaitTermination(20, TimeUnit.MINUTES);
 		
 	}
 }

@@ -33,7 +33,7 @@ public class Case3Test {
 			public void run() {
 				try {
 					SimpleProducer producer = new SimpleProducer("Producer");
-					producer.produce(1);
+					producer.produce(10000);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}  
@@ -47,7 +47,7 @@ public class Case3Test {
 			public void run() {
 				SimpleConsumer consumer_1 = new SimpleConsumer("Consumer_1");
 				try {
-					consumer_1.consumeAtWill(true, 15000, true); 
+					consumer_1.consumeAtWill(true, 1000, false); 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}  

@@ -26,6 +26,7 @@ public class SimpleConsumer {
 	private Map<String, Object> m_arguments = null;
 	private String m_host = null;
 	private String m_name = null;
+	private long counter = 0;
 	
 	
 	public SimpleConsumer (String name) {
@@ -84,16 +85,19 @@ public class SimpleConsumer {
 		
 		QueueingConsumer consumer = new QueueingConsumer(channel);
   	    channel.basicConsume(m_queue, false, consumer);
-  	    int counter = 0;
-  	    while (counter++ < numOfMsg) {
+  	    int msgCtr = 0;
+  	    while (msgCtr++ < numOfMsg) {
   	      QueueingConsumer.Delivery delivery = consumer.nextDelivery();
   	      String message = new String(delivery.getBody());
   	      System.out.println(m_name +" [x] Received '" + message + "'");
   	      Thread.sleep(waittime);  	      
-  	      if(sendAck)
+  	      if(sendAck)  {
   	    	  channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-  	      else 
+  	    	  counter++;
+  	    	  System.out.println(m_name +" consumed : " + counter +" msgs");
+  	      } else { 
   	    	  channel.basicNack(delivery.getEnvelope().getDeliveryTag(), false, true);
+  	      }
   	    }
   	    
   	    channel.close();
@@ -125,14 +129,14 @@ public class SimpleConsumer {
 	public void consumeAtWill(boolean sendAck, long waittime, boolean showDone) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException  {
 		
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setAutomaticRecoveryEnabled(true);
-		// attempt recovery every 10 seconds
-		factory.setNetworkRecoveryInterval(10000);
 	    factory.setHost(m_host);
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
-		
+	    channel.queueDeclare(m_queue, m_durable, m_exclusive, m_autoDelete, m_arguments);
+	    channel.basicQos(1);
+	    
 		QueueingConsumer consumer = new QueueingConsumer(channel);
+		
   	    channel.basicConsume(m_queue, false, consumer);
   	    while (true) {
   	      QueueingConsumer.Delivery delivery = consumer.nextDelivery();
@@ -141,9 +145,11 @@ public class SimpleConsumer {
   	      Thread.sleep(waittime); 
   	      if(showDone) 
   	    	  System.out.println(m_name + " done working on '" + message + "'");
-  	      if(sendAck)
+  	      if(sendAck) {
   	    	  channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-  	      else 
+  	    	  counter++;
+  	    	  System.out.println(m_name +" consumed : " + counter +" msgs");
+  	      } else 
   	    	  channel.basicNack(delivery.getEnvelope().getDeliveryTag(), false, true);
   	    }
 	}
