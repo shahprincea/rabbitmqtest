@@ -61,7 +61,7 @@ public class Case15Test {
 			public void run() {
 				try {
 					for(int i =0; i < 3; i++) {
-						//App.restartRabbit(2);
+						App.restartRabbit(2);
 						TimeUnit.SECONDS.sleep(1);
 					}
 					

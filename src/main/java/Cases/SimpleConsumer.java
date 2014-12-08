@@ -155,6 +155,43 @@ public class SimpleConsumer {
 	}
 	
 	/**
+	 * Consume as many messages as you can. Each msg takes waittime time to do the task
+	 * @param sendAck
+	 * @param waittime
+	 * @throws IOException
+	 * @throws ShutdownSignalException
+	 * @throws ConsumerCancelledException
+	 * @throws InterruptedException
+	 */
+	public void consumeMultiNodeAtWill(boolean sendAck, long waittime, boolean showDone, String host, String queue) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException  {
+		
+		ConnectionFactory factory = new ConnectionFactory();
+	    factory.setHost(host);
+	    Connection connection = factory.newConnection();
+	    Channel channel = connection.createChannel();
+	    channel.queueDeclare(queue, true, false, false, null);
+	    channel.basicQos(100,false);
+	    
+		QueueingConsumer consumer = new QueueingConsumer(channel);
+		
+  	    channel.basicConsume(queue, false, consumer);
+  	    while (true) {
+  	      QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+  	      String message = new String(delivery.getBody());
+  	      System.out.println(m_name +" [x] Received '" + message + "'");
+  	      Thread.sleep(waittime); 
+  	      if(showDone) 
+  	    	  System.out.println(m_name + " done working on '" + message + "'");
+  	      if(sendAck) {
+  	    	  channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+  	    	  counter++;
+  	    	  System.out.println(m_name +" consumed : " + counter +" msgs");
+  	      } else 
+  	    	  channel.basicNack(delivery.getEnvelope().getDeliveryTag(), false, true);
+  	    }
+	}
+	
+	/**
 	 * Consume 1 msg and dies after waiting for pre define time in mill Sec
 	 * 
 	 * NOTE: we are closing connection (simulating breaking of connection)

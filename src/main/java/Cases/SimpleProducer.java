@@ -125,6 +125,37 @@ public class SimpleProducer {
   	    
 	}
 	
+	/**
+	 * 
+	 * @param numOfMsg
+	 * @param delay
+	 * @throws IOException
+	 */
+	public void produceMultiNode(long numOfMsg, long delay, String host, String queueName) throws IOException {
+		
+		ConnectionFactory factory = new ConnectionFactory();
+		factory.setHost(host);
+	    Connection connection = factory.newConnection();
+	    Channel channel = connection.createChannel();
+	    //channel.queueDelete(queueName);
+	    channel.queueDeclare(queueName, true, false, false, null);
+	    channel.basicQos(100, false);
+  		
+	    for(int i = 1; i <= numOfMsg; i++) {
+  	    	try {
+	  	    	String message = "msg_"+i;
+		  		channel.basicPublish("", queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+		  	    System.out.println(m_name + " [x] Sent '" + message + "'");
+	  	    	TimeUnit.MILLISECONDS.sleep(delay);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} 
+	  	}
+  	    channel.close();
+        connection.close();
+  	    
+	}
+	
 	public void produceReliably(long numOfMsg, long delay) throws IOException, InterruptedException {
 		final SortedSet<Long> unconfirmedSet = Collections.synchronizedSortedSet(new TreeSet());
 		
@@ -174,7 +205,7 @@ public class SimpleProducer {
 		  	}
 	  	}
   	    
-  	    channel.waitForConfirms();
+  	    //channel.waitForConfirms();
   	    channel.close();
         connection.close();
 	}
